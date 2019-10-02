@@ -1,0 +1,104 @@
+[
+  {
+    "id": "1",
+    "name": "Donec et magna",
+    "description": "Donec et magna nec urna ultrices volutpat nec non mi.",
+    "isFavorite": true
+  },
+  {
+    "id": "2",
+    "name": "Curabitur ultrices nisl",
+    "description": "Curabitur ultrices nisl quis sem convallis aliquam.",
+    "isFavorite": false
+  },
+  {
+    "id": "3",
+    "name": "Donec vitae orci",
+    "description": "Donec vitae orci mollis, eleifend metus vitae, molestie lacus.",
+    "isFavorite": true
+  },
+  {
+    "id": "4",
+    "name": "Duis molestie massa",
+    "description": "Duis molestie massa sit amet sem sagittis porttitor.",
+    "isFavorite": true
+  },
+  {
+    "id": "5",
+    "name": "Donec ornare arcu",
+    "description": "Donec ornare arcu at ligula sagittis pellentesque.",
+    "isFavorite": false
+  },
+  {
+    "id": "6",
+    "name": "Etiam maximus ipsum",
+    "description": "Etiam maximus ipsum eget nisi congue tristique.",
+    "isFavorite": false
+  },
+  {
+    "id": "7",
+    "name": "Sed vitae lacus",
+    "description": "Sed vitae lacus et tellus imperdiet dignissim nec at metus.",
+    "isFavorite": true
+  },
+  {
+    "id": "8",
+    "name": "Donec eget purus",
+    "description": "Donec eget purus tempus, iaculis massa id, efficitur libero.",
+    "isFavorite": false
+  },
+  {
+    "id": "9",
+    "name": "Aenean non augue",
+    "description": "Aenean non augue pulvinar metus tincidunt hendrerit.",
+    "isFavorite": false
+  },
+  {
+    "id": "10",
+    "name": "Etiam sed mauris",
+    "description": "Etiam sed mauris vel turpis congue sollicitudin.",
+    "isFavorite": true
+  },
+  {
+    "id": "11",
+    "name": "Donec eu metus",
+    "description": "Donec eu metus nec augue blandit varius.",
+    "isFavorite": true
+  },
+  {
+    "id": "12",
+    "name": "Curabitur eleifend urna",
+    "description": "Curabitur eleifend urna in nunc ornare rhoncus.",
+    "isFavorite": true
+  },
+  {
+    "id": "13",
+    "name": "Duis sed nulla",
+    "description": "Duis sed nulla semper, sagittis massa id, luctus sem.",
+    "isFavorite": false
+  },
+  {
+    "id": "14",
+    "name": "Cras malesuada purus",
+    "description": "Cras malesuada purus a ligula molestie, sed dignissim lorem euismod.",
+    "isFavorite": true
+  },
+  {
+    "id": "15",
+    "name": "Duis laoreet lectus",
+    "description": "Duis laoreet lectus vel odio tincidunt pulvinar.",
+    "isFavorite": false
+  },
+  {
+    "id": "16",
+    "name": "Nulla ultricies augue",
+    "description": "Nulla ultricies augue a ligula dapibus tristique.",
+    "isFavorite": false
+  },
+  {
+    "id": "17",
+    "name": "Pellentesque et augue",
+    "description": "Pellentesque et augue ac eros ornare euismod.",
+    "isFavorite": false
+  }
+]
