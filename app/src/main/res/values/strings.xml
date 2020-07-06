@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ProductCatalog</string>
+    <string name="overview_title">Overview</string>
+    <string name="details_title_exist">Product: %1$s</string>
 </resources>

@@ -47,7 +47,7 @@ abstract class ProductCatalogDatabase : RoomDatabase() {
 
                         val request =
                             OneTimeWorkRequestBuilder<ProductCatalogPrePopulateDataWorker>().build()
-                        WorkManager.getInstance().enqueue(request)
+                        WorkManager.getInstance(context).enqueue(request)
                     }
                 })
                 .build()
