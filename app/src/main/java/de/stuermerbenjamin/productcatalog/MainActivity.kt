@@ -1,7 +1,7 @@
 package de.stuermerbenjamin.productcatalog
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import de.stuermerbenjamin.productcatalog.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {

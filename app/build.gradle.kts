@@ -15,6 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "de.stuermerbenjamin.productcatalog"
+
         // API 21 | 5.0 ignore multidex
         minSdkVersion(21)
         targetSdkVersion(30)
@@ -51,13 +52,27 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     configure<JavaPluginConvention> {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+detekt {
+    config = files("$projectDir/detekt.yml")
+
+    reports {
+        html.enabled = true
+        xml.enabled = true
     }
 }
 
@@ -65,14 +80,15 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", KotlinCompilerVersion.VERSION))
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
 
     // arch
+    implementation("androidx.arch.core:core-common:2.1.0")
+    implementation("androidx.arch.core:core-runtime:2.1.0")
+    implementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 
     // workmanager
@@ -91,6 +107,7 @@ dependencies {
 
     // Layout
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.core:core-ktx:1.3.0")
 
     // Design
@@ -104,9 +121,14 @@ dependencies {
     kapt("androidx.room:room-compiler:$roomVersion")
     testImplementation("androidx.room:room-testing:$roomVersion")
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.7.2")
+
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:2.1.2")
-    testImplementation("androidx.paging:paging-common:2.1.2")
+    testImplementation("androidx.paging:paging-common-ktx:2.1.2")
 
     // persistence
     implementation("com.google.code.gson:gson:2.8.5")
@@ -118,12 +140,9 @@ dependencies {
     // Crashlytics
     implementation("com.crashlytics.sdk.android:crashlytics:2.10.1")
 
-    // image loading
-    implementation("io.coil-kt:coil:0.9.5")
-
     // Testing
     androidTestUtil("androidx.test:orchestrator:1.2.0")
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13")
     testImplementation("androidx.test:core:1.2.0")
     testImplementation("androidx.test:runner:1.2.0")
     testImplementation("androidx.test.ext:junit:1.1.1")
@@ -133,7 +152,7 @@ dependencies {
     implementation("androidx.test.espresso:espresso-idling-resource:3.3.0-rc01")
     testImplementation("org.robolectric:robolectric:4.3.1")
 
-    androidTestImplementation("junit:junit:4.12")
+    androidTestImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
     androidTestImplementation("androidx.test:rules:1.2.0")

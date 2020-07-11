@@ -6,10 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import de.stuermerbenjamin.productcatalog.R
-import de.stuermerbenjamin.productcatalog.data.entity.Product
+import de.stuermerbenjamin.productcatalog.data.local.entity.Product
 
-
-class ProductAdapter(private val productItemClickListener: ProductItemClickListener) : PagedListAdapter<Product, ProductViewHolder>(diffCallback) {
+class ProductAdapter(private val productItemClickListener: ProductItemClickListener) :
+    PagedListAdapter<Product, ProductViewHolder>(diffCallback) {
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bindTo(getItem(position), productItemClickListener)
     }

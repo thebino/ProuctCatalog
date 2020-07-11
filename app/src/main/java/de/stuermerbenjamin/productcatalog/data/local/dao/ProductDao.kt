@@ -1,4 +1,4 @@
-package de.stuermerbenjamin.productcatalog.data.dao
+package de.stuermerbenjamin.productcatalog.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,8 +6,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import de.stuermerbenjamin.productcatalog.data.entity.Product
-
+import de.stuermerbenjamin.productcatalog.data.local.entity.Product
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
@@ -18,7 +18,7 @@ interface ProductDao {
     fun insertAll(data: List<Product>)
 
     @Query("SELECT * FROM products ORDER BY id")
-    suspend fun getProducts(): List<Product>
+    fun getProducts(): Flow<List<Product>>
 
     @Query("SELECT * FROM products ORDER BY id")
     fun observeProducts(): LiveData<List<Product>>

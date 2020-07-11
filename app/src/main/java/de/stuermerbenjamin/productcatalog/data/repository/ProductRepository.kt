@@ -1,11 +1,88 @@
 package de.stuermerbenjamin.productcatalog.data.repository
 
-import androidx.lifecycle.LiveData
-import de.stuermerbenjamin.productcatalog.data.entity.Product
-import de.stuermerbenjamin.productcatalog.data.Result
+import androidx.test.espresso.idling.CountingIdlingResource
+import de.stuermerbenjamin.productcatalog.data.Resource
+import de.stuermerbenjamin.productcatalog.data.local.dao.ProductDao
+import de.stuermerbenjamin.productcatalog.data.local.entity.Product
+import de.stuermerbenjamin.productcatalog.data.remote.api.ProductApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
-interface ProductRepository {
-    fun observeProducts(): LiveData<Result<List<Product>>>
+/**
+ * Abstracts fetching data from remote and persisting it in a local data source for offline access.
+ * So the repository is the single source of truth https://en.wikipedia.org/wiki/Single_source_of_truth
+ *
+ * Every data READ should trigger
+ *   - return cache if available
+ *   - return local copy if available
+ *   - return remote copy
+ *
+ * Every data WRITE should trigger
+ *   - update cache
+ *   - update local
+ *   - update remote
+ */
+class ProductRepository(
+    private val localDataSource: ProductDao,
+    private val remoteDataSource: ProductApiService
+) {
+    fun getProducts(): Flow<Resource<List<Product>>> = flow {
+        // loading state
+        emit(Resource.Loading)
 
-    suspend fun refreshProducts()
+        // load from external and persist
+        try {
+            val response = remoteDataSource.getProducts()
+            response.map {
+                Product(
+                    it.id,
+                    it.title,
+                    it.description,
+                    false
+                )
+            }.let(localDataSource::insertAll)
+        } catch (e: Exception) {
+            // ignore failure
+        }
+
+        // read from local
+        val localData = localDataSource.getProducts()
+        emitAll(localData.map { Resource.Success(it) })
+    }.flowOn(Dispatchers.IO)
+}
+
+/**
+ * Contains a static reference to [IdlingResource]
+ */
+object EspressoIdlingResource {
+
+    private const val RESOURCE = "GLOBAL"
+
+    @JvmField
+    val countingIdlingResource = CountingIdlingResource(RESOURCE)
+
+    fun increment() {
+        countingIdlingResource.increment()
+    }
+
+    fun decrement() {
+        if (!countingIdlingResource.isIdleNow) {
+            countingIdlingResource.decrement()
+        }
+    }
+}
+
+inline fun <T> wrapEspressoIdlingResource(function: () -> T): T {
+    // Espresso does not work well with coroutines yet. See
+    // https://github.com/Kotlin/kotlinx.coroutines/issues/982
+    EspressoIdlingResource.increment() // Set app as busy.
+    return try {
+        function()
+    } finally {
+        EspressoIdlingResource.decrement() // Set app as idle.
+    }
 }

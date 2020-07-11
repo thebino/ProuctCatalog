@@ -5,18 +5,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import de.stuermerbenjamin.productcatalog.data.entity.Product
+import de.stuermerbenjamin.productcatalog.data.local.entity.Product
 import de.stuermerbenjamin.productcatalog.databinding.ProductItemBinding
 
-class OverviewAdapter(private val viewModel: OverviewViewModel) :
+class OverviewAdapter :
     ListAdapter<Product, OverviewAdapter.ViewHolder>(CountdownDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
+        ProductItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+    )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position))
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder.from(parent)
-
-    class ViewHolder private constructor(private val binding: ProductItemBinding) :
+    class ViewHolder constructor(val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: Product) {
