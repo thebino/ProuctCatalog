@@ -1,4 +1,4 @@
-package de.stuermerbenjamin.productcatalog.data.entity
+package de.stuermerbenjamin.productcatalog.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,5 +8,5 @@ data class Product(
     @PrimaryKey val id: String,
     val name: String,
     val description: String,
-    var isFavorite: Boolean
+    var isFavorite: Boolean = false
 )

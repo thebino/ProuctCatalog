@@ -1,9 +1,8 @@
 package de.stuermerbenjamin.productcatalog.ui
 
 import androidx.recyclerview.widget.RecyclerView
-import de.stuermerbenjamin.productcatalog.data.entity.Product
+import de.stuermerbenjamin.productcatalog.data.local.entity.Product
 import de.stuermerbenjamin.productcatalog.databinding.ProductItemBinding
-
 
 class ProductViewHolder(private val binding: ProductItemBinding) :
     RecyclerView.ViewHolder(binding.root) {

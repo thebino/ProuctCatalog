@@ -1,0 +1,7 @@
+formatting:
+  autoCorrect: false
+
+style:
+  ForbiddenComment:
+    active: false
+    values: 'TODO:,FIXME:,STOPSHIP:'

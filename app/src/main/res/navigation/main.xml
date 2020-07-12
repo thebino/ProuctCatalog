@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:startDestination="@id/overview_fragment">
+
+    <fragment
+            android:id="@+id/overview_fragment"
+            android:name="de.stuermerbenjamin.productcatalog.overview.OverviewFragment"
+            android:label="@string/overview_title"
+            tools:layout="@layout/fragment_overview">
+
+        <action
+                android:id="@+id/action_overview_to_details"
+                app:destination="@id/navigation_details"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <include-dynamic
+            android:id="@+id/navigation_details"
+            android:label="{title}"
+            app:graphResName="details"
+            app:moduleName="details">
+
+        <argument
+                android:name="title"
+                app:argType="string" />
+
+        <argument
+                android:name="productId"
+                app:argType="string" />
+    </include-dynamic>
+
+</navigation>
