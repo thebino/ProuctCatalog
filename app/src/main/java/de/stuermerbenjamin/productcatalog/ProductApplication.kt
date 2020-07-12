@@ -12,7 +12,7 @@ class ProductApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startStrictModeIfNecessarry()
+        // startStrictModeIfNecessarry()
 
         initLeakCanary()
     }

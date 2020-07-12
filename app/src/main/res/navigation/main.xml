@@ -12,23 +12,26 @@
 
         <action
                 android:id="@+id/action_overview_to_details"
-                app:destination="@id/details_fragment"
+                app:destination="@id/navigation_details"
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
-    <fragment
-            android:id="@+id/details_fragment"
-            android:name="de.stuermerbenjamin.productcatalog.details.DetailsFragment"
+    <include-dynamic
+            android:id="@+id/navigation_details"
             android:label="{title}"
-            tools:layout="@layout/fragment_details">
+            app:graphResName="details"
+            app:moduleName="details">
 
         <argument
                 android:name="title"
                 app:argType="string" />
 
-    </fragment>
+        <argument
+                android:name="productId"
+                app:argType="string" />
+    </include-dynamic>
 
 </navigation>

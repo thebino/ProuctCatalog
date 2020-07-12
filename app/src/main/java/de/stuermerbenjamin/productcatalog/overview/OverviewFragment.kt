@@ -15,9 +15,9 @@ import de.stuermerbenjamin.productcatalog.data.local.entity.Product
 import de.stuermerbenjamin.productcatalog.databinding.FragmentOverviewBinding
 
 class OverviewFragment : Fragment(R.layout.fragment_overview) {
-    private var viewDataBinding: FragmentOverviewBinding? = null
+    private var binding: FragmentOverviewBinding? = null
 
-    private val listAdapter = OverviewAdapter()
+    private lateinit var listAdapter: OverviewAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private val viewModel by viewModels<OverviewViewModel> {
@@ -29,9 +29,11 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewDataBinding = FragmentOverviewBinding.bind(view).apply {
+        binding = FragmentOverviewBinding.bind(view).apply {
             viewmodel = viewModel
             lifecycleOwner = viewLifecycleOwner
+
+            listAdapter = OverviewAdapter(viewModel)
 
             recyclerviewProducts.apply {
                 adapter = listAdapter
@@ -60,7 +62,8 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
 
         viewModel.openDetailsEvent.observe(viewLifecycleOwner, EventObserver {
             val action = OverviewFragmentDirections.actionOverviewToDetails(
-                resources.getString(R.string.details_title_exist, it.name)
+                resources.getString(R.string.details_title_exist, it.name),
+                it.id
             )
             findNavController().navigate(action)
         })

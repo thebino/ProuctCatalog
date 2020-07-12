@@ -53,6 +53,29 @@ class ProductRepository(
         val localData = localDataSource.getProducts()
         emitAll(localData.map { Resource.Success(it) })
     }.flowOn(Dispatchers.IO)
+
+    fun getProductDetails(productId: String): Flow<Resource<Product>> = flow {
+        // loading state
+        emit(Resource.Loading)
+
+        try {
+            val response = remoteDataSource.getProduct(productId)
+            localDataSource.insert(
+                Product(
+                    response.id,
+                    response.title,
+                    response.description,
+                    false
+                )
+            )
+        } catch (e: Exception) {
+            // ignore failure
+        }
+
+        // read from local
+        val localData = localDataSource.getProduct(productId)
+        emit(Resource.Success(localData))
+    }.flowOn(Dispatchers.IO)
 }
 
 /**

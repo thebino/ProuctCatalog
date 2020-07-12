@@ -7,15 +7,20 @@ plugins {
 
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
+
+    kotlin("android")
 }
 
 android {
     compileSdkVersion(30)
 
     defaultConfig {
-        applicationId = "de.stuermerbenjamin.productcatalog"
-
         minSdkVersion(24)
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     configure<JavaPluginConvention> {
@@ -25,6 +30,13 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    this.buildFeatures.viewBinding = true
+
+    lintOptions {
+        // use this line to check all rules except those listed
+        disable.add("UnusedResources")
     }
 }
 

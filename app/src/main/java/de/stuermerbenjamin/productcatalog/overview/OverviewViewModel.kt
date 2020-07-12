@@ -25,4 +25,11 @@ class OverviewViewModel(repository: ProductRepository) : ViewModel() {
 
     private val _openDetailsEvent = MutableLiveData<Event<Product>>()
     val openDetailsEvent: LiveData<Event<Product>> = _openDetailsEvent
+
+    /**
+     * Called by Data Binding.
+     */
+    fun openDetails(product: Product) {
+        _openDetailsEvent.value = Event(product)
+    }
 }

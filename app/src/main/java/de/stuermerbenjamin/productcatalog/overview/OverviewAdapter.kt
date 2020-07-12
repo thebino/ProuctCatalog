@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import de.stuermerbenjamin.productcatalog.data.local.entity.Product
 import de.stuermerbenjamin.productcatalog.databinding.ProductItemBinding
 
-class OverviewAdapter :
+class OverviewAdapter(private val viewModel: OverviewViewModel) :
     ListAdapter<Product, OverviewAdapter.ViewHolder>(CountdownDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
@@ -20,13 +20,14 @@ class OverviewAdapter :
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(getItem(position))
+        holder.bind(viewModel, getItem(position))
 
     class ViewHolder constructor(val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product: Product) {
+        fun bind(viewModel: OverviewViewModel, product: Product) {
             binding.product = product
+            binding.viewmodel = viewModel
             binding.executePendingBindings()
         }
 

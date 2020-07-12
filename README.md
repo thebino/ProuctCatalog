@@ -6,17 +6,6 @@
 This project is an android application to showcase [Jetpack libraries](https://d.android.com/jetpack).
 As buildsystem the [Gradle’s Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) is used.
 
-[![Sample](https://via.placeholder.com/350)](http://creativecommons.org/licenses/by-nc-nd/3.0/)
-
-## Table of contents
-
-* [Getting started](#getting-started)
-  * [Prerequisites](#prerequisites)
-* [Library usage](#library-usage)
-* [Contribution](#contribution)
-* [License](#license)
-
-
  * [View Binding](https://developer.android.com/topic/libraries/view-binding)
  * [Data Binding](https://developer.android.com/topic/libraries/data-binding)
  * [Lifecycles](https://developer.android.com/topic/libraries/architecture/lifecycle)
@@ -25,6 +14,18 @@ As buildsystem the [Gradle’s Kotlin DSL](https://docs.gradle.org/current/userg
  * [Room](https://developer.android.com/topic/libraries/architecture/room)
  * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
  * [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager)
+ * [Dynamic Feature Module](https://developer.android.com/guide/app-bundle/dynamic-delivery)
+
+
+![Overview](device-overview.png)
+
+## Table of contents
+
+* [Getting started](#getting-started)
+  * [Prerequisites](#prerequisites)
+* [Library usage](#library-usage)
+* [Contribution](#contribution)
+* [License](#license)
 
 
 ## Getting started

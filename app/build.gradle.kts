@@ -37,6 +37,8 @@ android {
         shaders = false
     }
 
+    dynamicFeatures = mutableSetOf(":details")
+
     buildTypes {
         named("debug") {
             applicationIdSuffix = ".debug"
@@ -64,6 +66,12 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    lintOptions {
+        disable.add("GradleDependency")
+        disable.add("ObsoleteLintCustomCheck")
+        disable.add("UnusedResources")
     }
 }
 
@@ -95,9 +103,10 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.3.4")
 
     // Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
-    testImplementation("androidx.navigation:navigation-testing:2.3.0")
+    api("androidx.navigation:navigation-fragment-ktx:2.3.0")
+    api("androidx.navigation:navigation-ui-ktx:2.3.0")
+    api("androidx.navigation:navigation-dynamic-features-fragment:2.3.0")
+    testApi("androidx.navigation:navigation-testing:2.3.0")
     debugImplementation("androidx.fragment:fragment-testing:1.2.5")
 
     // Coroutines
@@ -106,8 +115,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
 
     // Layout
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    api("androidx.constraintlayout:constraintlayout:1.1.3")
+    api("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.core:core-ktx:1.3.0")
 
     // Design
@@ -142,7 +151,7 @@ dependencies {
 
     // Testing
     androidTestUtil("androidx.test:orchestrator:1.2.0")
-    testImplementation("junit:junit:4.13")
+    testImplementation("junit:junit:4.12")
     testImplementation("androidx.test:core:1.2.0")
     testImplementation("androidx.test:runner:1.2.0")
     testImplementation("androidx.test.ext:junit:1.1.1")
@@ -152,7 +161,7 @@ dependencies {
     implementation("androidx.test.espresso:espresso-idling-resource:3.3.0-rc01")
     testImplementation("org.robolectric:robolectric:4.3.1")
 
-    androidTestImplementation("junit:junit:4.13")
+    androidTestImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
     androidTestImplementation("androidx.test:rules:1.2.0")
