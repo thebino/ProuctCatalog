@@ -123,6 +123,12 @@ dependencies {
     implementation("com.google.android.material:material:1.1.0")
     implementation("androidx.palette:palette-ktx:1.0.0")
 
+    // Slices
+    implementation("androidx.slice:slice-core:1.0.0")
+    implementation("androidx.slice:slice-view:1.0.0")
+    implementation("androidx.slice:slice-builders:1.0.0")
+    implementation("androidx.slice:slice-builders-ktx:1.0.0-alpha07")
+
     // Room
     val roomVersion = "2.2.5"
     implementation("androidx.room:room-runtime:$roomVersion")
