@@ -1,6 +1,5 @@
 package de.stuermerbenjamin.productcatalog.data.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -22,9 +21,6 @@ interface ProductDao {
 
     @Query("SELECT * FROM products WHERE id = :productId")
     fun getProduct(productId: String): Product
-
-    @Query("SELECT * FROM products ORDER BY id")
-    fun observeProducts(): LiveData<List<Product>>
 
     @Update
     suspend fun update(vararg product: Product)
